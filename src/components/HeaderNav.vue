@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app :elevation="2">
     <v-app-bar-nav-icon />
-    <router-link to="/">
+    <router-link to="/app/home">
 
       <v-app-bar-title> Home</v-app-bar-title>
     </router-link>

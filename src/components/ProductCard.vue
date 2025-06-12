@@ -2,7 +2,7 @@
   <div class="card-box ma-3">
     <v-row>
       <v-col v-for="item in product" :key="item.id" cols="12" sm="3">
-        <router-link :to="{ name: 'productPage', params: { id: item.id } }">
+        <router-link :to="{ name: 'ProductPage', params: { id: item.id } }">
           <v-card class="mx-auto" max-width="344">
             <v-img height="200px" :src="item.image" cover></v-img>
 

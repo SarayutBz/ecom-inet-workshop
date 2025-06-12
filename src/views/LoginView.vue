@@ -34,7 +34,7 @@ function handleLogin() {
   if ( username.value && password.value) {
     const fakeToken = 'abcd1234'
     auth.login(fakeToken)
-    router.push('/home')
+    router.push('/app/home')
 }else{
     alert('กรุณากรอกข้อมูลให้ครบถ้วน')
   }
