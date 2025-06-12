@@ -21,6 +21,11 @@ const router = createRouter({
           name: "Login",
           component: () => import("@/views/LoginView.vue"),
         },
+        // {
+        //   path: "notfound",
+        //   name: "Login",
+        //   component: () => import("@/views/LoginView.vue"),
+        // },
       ],
     },
 
@@ -36,6 +41,10 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path:'/:pathMatch(.*)*',
+      redirect: '/notfound'
+    }
   ],
 });
 
