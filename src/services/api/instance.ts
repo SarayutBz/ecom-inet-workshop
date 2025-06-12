@@ -2,7 +2,7 @@ import axios, { type AxiosInstance, type InternalAxiosRequestConfig, type AxiosE
 
 const createInstance = (domain: string): AxiosInstance => {
   const instance: AxiosInstance = axios.create({
-    baseURL: `${ domain }`,
+    baseURL: 'https://fakestoreapi.com/',
     headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json'

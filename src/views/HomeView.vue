@@ -1,36 +1,40 @@
 <template>
-  <div>
-    <h3 class="text-variable">Helloworld</h3>
-    <h3 class="text-mixin">Helloworld</h3>
+  <v-app>
+    <HeaderNav />
+    <CarouselBar />
 
+    <v-main>
+      <ProductCard :products="product" />
+    </v-main>
 
+    <FooterBar />
 
-    <v-card
-    class="mx-auto"
-    prepend-icon="$vuetify"
-    subtitle="The #1 Vue UI Library"
-    width="400"
-  >
-    <template v-slot:title>
-      <span class="font-weight-black">Welcome to Vuetify</span>
-    </template>
+  </v-app>
 
-    <v-card-text class="bg-surface-light pt-4">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima, at placeat totam, magni doloremque veniam neque porro libero rerum unde voluptatem!
-    </v-card-text>
-  </v-card>
-  </div>
 </template>
 
 <script setup lang="ts">
+import HeaderNav from '@/components/HeaderNav.vue'
+import FooterBar from '@/components/FooterBar.vue'
+import CarouselBar from '@/components/CarouselBar.vue';
+import ProductCard from '@/components/ProductCard.vue'
+import productApi from '@/services/api/features/product.ts'
+import { type Product } from '@/models/product'
+import {onMounted, ref } from 'vue'
 
+
+
+const product = ref<Product | null>(null)
+async function getProduct() {
+  const response = await productApi.getAll<Product>()
+  product.value = response
+  console.log(product.value)
+}
+
+onMounted(() => {
+  // ยิง API Get Product by ID
+  getProduct()
+})
 </script>
 
-<style lang="scss" scoped>
-.text-variable {
-  background-color: $error;
-}
-.text-mixin {
-  @include gradient($primary,$error)
-}
-</style>
+<style scoped></style>
