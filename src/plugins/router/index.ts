@@ -1,24 +1,66 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
+
 import ProductPage from '@/views/ProductPage.vue'
+import { useAuthStore } from "@/plugins/stores/auth";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/home',
-      name: 'home',
-      component: HomeView,
-      alias:['/','/home']
+      path: '/',
+      redirect: '/auth/login'
     },
     {
-      path: '/product/:id',
-      name: 'productPage',
-      component: ProductPage,
-
+      path: '/auth',
+      component: () => import('@/layouts/BlankLayout.vue'),
+      meta: { requireAuth: false },
+      children: [
+        {
+          path: 'login',
+          name: 'Login',
+          component: () => import('@/views/LoginView.vue'),
+        },
+        {
+          path: 'notfound',
+          name: 'NotFound',
+          component: () => import('@/views/NotFoundView.vue'),
+        },
+      ],
     },
-
+    {
+      path: '/app',
+      component: () => import('@/layouts/DefaultLayout.vue'),
+      meta: { requireAuth: true },
+      children: [
+        {
+          path: 'home',
+          name: 'home-auth',
+          component: () => import('@/views/HomeView.vue'),
+        },
+        {
+          path: 'product/:id',
+          name: 'ProductPage',
+          component: ProductPage,
+        },
+      ],
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/auth/notfound',
+    },
   ],
+})
+
+
+// Auth Guard
+router.beforeEach((to, from, next) => {
+  const auth = useAuthStore()
+
+  if (to.meta.requireAuth && !auth.isLoggedIn) {
+    next({ name: 'Login' })
+  } else {
+    next()
+  }
 })
 
 export default router
