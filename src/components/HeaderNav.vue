@@ -8,6 +8,7 @@
     <v-spacer />
     <v-btn icon="mdi-cart" />
     <v-btn icon="mdi-magnify" />
+    <v-btn icon="mdi-account" />
     <v-btn icon="mdi-dots-vertical" />
   </v-app-bar>
 </template>
