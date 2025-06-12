@@ -6,7 +6,10 @@
       <v-app-bar-title> Home</v-app-bar-title>
     </router-link>
     <v-spacer />
-    <v-btn icon="mdi-cart" />
+    <router-link to="/app/cart">
+
+      <v-btn icon="mdi-cart" />
+    </router-link>
     <v-btn icon="mdi-magnify" />
     <v-btn icon="mdi-dots-vertical" />
   </v-app-bar>
