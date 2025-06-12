@@ -1,9 +1,12 @@
 <template>
   <v-app-bar app :elevation="2">
     <v-app-bar-nav-icon />
-    <v-app-bar-title>Application Bar</v-app-bar-title>
+    <router-link to="/">
+
+      <v-app-bar-title> Home</v-app-bar-title>
+    </router-link>
     <v-spacer />
-    <v-btn icon="mdi-heart" />
+    <v-btn icon="mdi-cart" />
     <v-btn icon="mdi-magnify" />
     <v-btn icon="mdi-dots-vertical" />
   </v-app-bar>
