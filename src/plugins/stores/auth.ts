@@ -20,8 +20,6 @@ export const useAuthStore = defineStore('auth', {
         this.token = token
         this.username = username
 
-        instance.defaults.headers.common['Authorization'] = `Bearer ${token}`
-
         const profile = await getUserByUsername(username)
         this.profile = profile
 
