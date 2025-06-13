@@ -11,7 +11,8 @@ export interface Product {
     rate: number;
     count: number;
   };
-  price?: number;
+  price: number;
+  totalPrice: number;
 }
 
 export const useCartStore = defineStore("cart", {
@@ -23,16 +24,21 @@ export const useCartStore = defineStore("cart", {
       const existing = this.carts.find((item) => item.id === newProduct.id);
       if (existing) {
         existing.quantity += newProduct.quantity;
+        existing.totalPrice = existing.quantity * existing.price;
       } else {
-        this.carts.push({ ...newProduct });
+        this.carts.push({
+          ...newProduct,
+          totalPrice: newProduct.quantity * newProduct.price,
+        });
       }
-      console.log(this.carts);
     },
+
     increaseQuantity(productId: number | string) {
       const product = this.carts.find((item) => item.id === productId);
       if (product && product.quantity < product.rating.count) {
         product.quantity += 1;
         product.rating.count -= 1;
+        product.totalPrice = product.quantity * product.price;
       }
     },
     decreaseQuantity(productId: number | string) {
@@ -40,15 +46,19 @@ export const useCartStore = defineStore("cart", {
       if (product && product.quantity > 1) {
         product.quantity -= 1;
         product.rating.count += 1;
+        product.totalPrice = product.quantity * product.price;
       }
     },
     removeCart(CartId: number | string) {
       // const product = this.carts.find(item => item.id === productId)
       const index = this.carts.findIndex((item) => item.id === CartId);
-      console.log("index : ",index)
+      console.log("index : ", index);
       if (index !== -1) {
         this.carts.splice(index, 1);
       }
+    },
+    getSumPrice(): number {
+      return this.carts.reduce((sum, item) => sum + (item.totalPrice || 0), 0);
     },
   },
 });
