@@ -9,9 +9,13 @@
                     <v-text-field v-model="password" label="Password" type="password" required />
                 </v-form>
             </v-card-text>
-            <v-card-actions>
-                <v-btn type="submit" block class="mt-4" style="background-color: black; color: white;" @click="handleLogin">
+            <v-card-actions class="d-flex flex-column gap-3">
+                <v-btn type="button" block style="background-color: black; color: white;" @click="handleLogin">
                     เข้าสู่ระบบ
+                </v-btn>
+
+                <v-btn type="button" block style="background-color: gray; color: white;" @click="handleRegister">
+                    สมัครสมาชิก
                 </v-btn>
             </v-card-actions>
         </v-card>
@@ -31,16 +35,22 @@ const username = ref('')
 const password = ref('')
 
 function handleLogin() {
-  if ( username.value && password.value) {
-    const fakeToken = 'abcd1234'
-    auth.login(fakeToken)
-    router.push('/app/home')
-}else{
-    alert('กรุณากรอกข้อมูลให้ครบถ้วน')
-  }
+    if (!username.value || !password.value) {
+        alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+        return
+    } 
+
+    const success = auth.login(username.value, password.value)
+    if (success) {
+        router.push('/app/home')
+    } else {
+        alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
+    }
+}
+
+function handleRegister(){
+    router.push('register')
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

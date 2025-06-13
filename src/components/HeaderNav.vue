@@ -11,6 +11,9 @@
       <v-btn icon="mdi-cart" />
     </router-link>
     <v-btn icon="mdi-magnify" />
+    <router-link class="link-to" to="/app/profile">
+      <v-btn icon="mdi-account" />
+    </router-link>
     <v-btn icon="mdi-dots-vertical" />
   </v-app-bar>
 </template>
@@ -22,7 +25,8 @@
 </script>
 
 <style scoped>
-.link-to{
-    list-style: none;
-  text-decoration:none;
-}</style>
+.link-to {
+  list-style: none;
+  text-decoration: none;
+}
+</style>
