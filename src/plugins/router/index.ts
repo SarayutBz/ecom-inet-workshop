@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import ProductPage from '@/views/ProductPage.vue'
+import CartView from '@/views/CartView.vue'
 import { useAuthStore } from "@/plugins/stores/auth";
 
 const router = createRouter({
@@ -48,9 +49,9 @@ const router = createRouter({
           component: ProductPage,
         },
         {
-          path: 'profile',
-          name: 'Profile',
-          component: () => import('@/views/ProfilePage.vue'),
+          path: 'cart',
+          name: 'cart',
+          component: CartView,
         },
       ],
     },

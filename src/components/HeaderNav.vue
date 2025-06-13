@@ -1,12 +1,15 @@
 <template>
   <v-app-bar app :elevation="2">
     <v-app-bar-nav-icon />
-    <router-link to="/app/home">
+    <router-link class="link-to" to="/app/home">
 
       <v-app-bar-title> Home</v-app-bar-title>
     </router-link>
     <v-spacer />
-    <v-btn icon="mdi-cart" />
+    <router-link class="link-to" to="/app/cart">
+
+      <v-btn icon="mdi-cart" />
+    </router-link>
     <v-btn icon="mdi-magnify" />
     <v-btn icon="mdi-account" />
     <v-btn icon="mdi-dots-vertical" />
@@ -19,4 +22,8 @@
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.link-to{
+    list-style: none;
+  text-decoration:none;
+}</style>
