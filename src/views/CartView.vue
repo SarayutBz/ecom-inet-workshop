@@ -71,9 +71,12 @@
             <v-card-text>
               ราคารวมทั้งหมด <b>{{ totalPrice }}</b> บาท
             </v-card-text>
-            <v-btn color="success" variant="outlined">
+            <router-link to="/app/payment" >
+              <v-btn color="success" variant="outlined">
               ชำระเงิน
             </v-btn>
+            </router-link>
+            
           </v-card>
         </v-col>
 

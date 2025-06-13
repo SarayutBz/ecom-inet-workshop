@@ -2,6 +2,7 @@
     <v-container class="fill-height d-flex justify-center align-center">
         <v-card elevation="4" style="display: inline-block; padding: 16px;">
             <v-card-item>
+                 <v-icon size="64" class="mb-2">mdi-alert-circle-outline</v-icon>
                 <v-card-title>
                     404 Not Found
                 </v-card-title>

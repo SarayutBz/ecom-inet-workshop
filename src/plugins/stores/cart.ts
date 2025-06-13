@@ -59,6 +59,9 @@ export const useCartStore = defineStore("cart", {
     },
     getSumPrice(): number {
       return this.carts.reduce((sum, item) => sum + (item.totalPrice || 0), 0);
-    },
+    },  
+    clearCart(){
+      this.carts = []
+    }
   },
 });
