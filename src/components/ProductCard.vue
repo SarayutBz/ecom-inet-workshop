@@ -2,7 +2,7 @@
   <div class="card-box ma-3">
     <v-row>
       <v-col v-for="item in product" :key="item.id" cols="12" sm="3">
-        <router-link :to="{ name: 'ProductPage', params: { id: item.id } }">
+        <router-link class="link-to" :to="{ name: 'ProductPage', params: { id: item.id } }">
           <v-card class="mx-auto" max-width="344">
             <v-img height="200px" :src="item.image" cover></v-img>
 
@@ -46,5 +46,9 @@ onMounted(() => {
 <style scoped>
 .card-box {
   cursor: pointer;
+}
+.link-to{
+  list-style: none;
+  text-decoration:none;
 }
 </style>

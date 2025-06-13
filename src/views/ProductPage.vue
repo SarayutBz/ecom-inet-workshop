@@ -44,12 +44,13 @@ import { type Product } from "@/models/product";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useCartStore } from '@/plugins/stores/cart'
-
+import { useRouter } from "vue-router";
 const CartStore = useCartStore()
-
-
-function handleAddProduct(prodcut) {
-   CartStore.addProduct({ ...prodcut })
+const router = useRouter()
+let quantity = ref(1)
+function handleAddProduct(product: Product) {
+   CartStore.addProduct({ ...product,quantity: quantity.value })
+   router.push("/app/cart")
 }
 const route = useRoute();
 const product = ref<Product | null>(null);
@@ -68,3 +69,4 @@ onMounted(() => {
   getById();
 });
 </script>
+import router from "@/plugins/router";
