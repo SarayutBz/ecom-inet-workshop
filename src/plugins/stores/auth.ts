@@ -28,10 +28,6 @@ export const useAuthStore = defineStore('auth', {
     },
     logout() {
       this.token = ''
-      this.username = ''
-      this.password = ''
-      this.firstname = ''
-      this.lastname = ''
     },
   },
   persist: true,
