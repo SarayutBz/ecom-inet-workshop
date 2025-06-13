@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <v-main class="ma-3" v-if="Carts">
+    <v-main class="ma-3" v-if="Carts.length != 0">
       <v-card color="#ffff" class="pa-4" v-for="Cart in Carts" :key="Cart.id" border="opacity-50 sm">
         <v-container>
           <v-row class="d-flex align-center" dense>
@@ -30,16 +30,39 @@
                 <b>Stock: </b> {{ Cart.rating.count }}
               </v-card-subtitle>
 
-              <div class="px-5 mt-4 mb-2 w-25">
+              <div class="d-flex align-center ga-4 mt-4" style="flex-wrap: wrap; " col="6">
+
+                <v-text-field class="px-5 mt-4 mb-2 w-15" v-model="Cart.quantity" type="number" readonly>
+                  <template v-slot:append>
+                    <v-icon class="btn-click" @click="addNumber(Cart)" color="black">mdi-plus</v-icon>
+                  </template>
+                  <template v-slot:prepend>
+                    <v-icon class="btn-click" @click="removeNumber(Cart)" color="black">mdi-minus</v-icon>
+                  </template>
+                </v-text-field>
+
+                <v-btn prepend-icon="mdi-trash-can" color="error" @click="removeCart(Cart.id)" variant="outlined">
+                  Button
+                </v-btn>
+
+              </div>
+
+
+
+              <!-- <div class="px-5 mt-4 mb-2 w-25">
                 <v-select label="จำนวนสินค้า" :items="Array.from({ length: Cart.rating.count }, (_, i) => i + 1)"
                   v-model="Cart.quantity" />
 
-              </div>
+              </div> -->
 
             </v-col>
           </v-row>
         </v-container>
       </v-card>
+    </v-main>
+
+    <v-main v-else class="text-center">
+      <p>ไม่มีสินค้าอยู่ในตระกล้า กรุณาเลือกสินค้า</p>
     </v-main>
     <!-- <button @click="clickTest">click</button> -->
   </div>
@@ -47,10 +70,28 @@
 
 <script setup lang="ts">
 import { useCartStore } from '@/plugins/stores/cart';
+
 const CartStore = useCartStore()
 const Carts = CartStore.$state.carts
+
+// let counter = ref(Number(Carts.quantity))
+// const test = CartStore.$state.carts
+const addNumber = (product) => {
+  CartStore.increaseQuantity(product.id)
+}
+const removeNumber = (product) => {
+  CartStore.decreaseQuantity(product.id)
+}
+const removeCart = (CartId) => {
+  CartStore.removeCart(CartId)
+}
+
 
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.btn-click {
+  cursor: pointer;
+}
+</style>
