@@ -1,12 +1,7 @@
 <template>
 
-
   <CarouselBar />
   <ProductCard />
-
-
-
-
 
 </template>
 

@@ -42,7 +42,7 @@
                 </v-text-field>
 
                 <v-btn prepend-icon="mdi-trash-can" color="error" @click="removeCart(Cart.id)" variant="outlined">
-                  Button
+                  ลบสินค้า
                 </v-btn>
 
               </div>

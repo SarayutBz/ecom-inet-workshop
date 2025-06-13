@@ -45,6 +45,7 @@ export const useCartStore = defineStore("cart", {
     removeCart(CartId: number | string) {
       // const product = this.carts.find(item => item.id === productId)
       const index = this.carts.findIndex((item) => item.id === CartId);
+      console.log("index : ",index)
       if (index !== -1) {
         this.carts.splice(index, 1);
       }
